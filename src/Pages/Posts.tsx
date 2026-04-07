@@ -1,4 +1,4 @@
-import type { Posts } from "../types/posts";
+import type { posts } from "../types/posts";
 import { useFetch } from "../hooks/useFetch";
 import { API } from "../services/api.ts";
 import PostsList from "../Components/PostsList.tsx";
@@ -28,7 +28,7 @@ function PostsSkeleton() {
 }
 
 function Posts() {
-  const { data, loading, error } = useFetch<Posts[]>(API.POSTS);
+  const { data, loading, error } = useFetch<posts[]>(API.POSTS);
   const [search, setSearch] = useState("");
 
   if (loading) return <PostsSkeleton />;
