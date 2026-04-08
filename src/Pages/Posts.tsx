@@ -1,9 +1,7 @@
-import type { posts } from "../types/posts";
-import { useFetch } from "../hooks/useFetch";
-import { API } from "../services/api.ts";
 import PostsList from "../Components/PostsList.tsx";
 import SearchBar from "../Components/SearchBar.tsx";
 import { useState } from "react";
+import { useAppContext } from "../context/useAppContext";
 
 function PostsSkeleton() {
   return (
@@ -28,14 +26,14 @@ function PostsSkeleton() {
 }
 
 function Posts() {
-  const { data, loading, error } = useFetch<posts[]>(API.POSTS);
   const [search, setSearch] = useState("");
+  const {posts,postsLoading,postsError}=useAppContext();
 
-  if (loading) return <PostsSkeleton />;
-  if (error) return <p>Error: {error}</p>;
-  if (!data) return <p>No posts found.</p>;
+  if (postsLoading) return <PostsSkeleton />;
+  if (postsError) return <p>Error: {postsError}</p>;
+  if (!posts) return <p>No posts found.</p>;
 
-  const filteredPosts = data.filter((post) =>
+  const filteredPosts = posts.filter((post) =>
     post.title.toLowerCase().includes(search.toLowerCase()),
   );
   return (

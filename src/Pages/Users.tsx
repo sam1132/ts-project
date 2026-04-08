@@ -1,10 +1,7 @@
 import { useState } from "react";
 import SearchBar from "../Components/SearchBar";
 import UserList from "../Components/UserList";
-import { useFetch } from "../hooks/useFetch";
-import { API } from "../services/api.ts";
-import type { User } from "../types/user.ts";
-
+import { useAppContext } from "../context/useAppContext";
 function UsersSkeleton() {
   return (
     <div>
@@ -32,13 +29,13 @@ function UsersSkeleton() {
 
 function Users() {
   const [search, setSearch] = useState("");
-  const { data, loading, error } = useFetch<User[]>(API.USERS);
+  const {users,usersError,usersLoading}=useAppContext();
 
-  if (loading) return <UsersSkeleton />;
-  if (error) return <p>Error: {error}</p>;
-  if (!data) return <p>No users found.</p>;
+  if (usersLoading) return <UsersSkeleton />;
+  if (usersError) return <p>Error: {usersError}</p>;
+  if (!users) return <p>No users found.</p>;
 
-  const filteredUsers = data.filter((user) =>
+  const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(search.toLowerCase()),
   );
   return (

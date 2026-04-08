@@ -3,9 +3,11 @@ import Dashboard from "./Pages/Dashboard.tsx";
 import Layout from "./Components/Layout.tsx";
 import Users from "./Pages/Users.tsx";
 import Posts from "./Pages/Posts.tsx";
+import { AppProvider } from "./context/AppProvider.tsx";
 function App() {
   return (
     <>
+    <AppProvider> 
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -15,6 +17,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+    </AppProvider>
     </>
   );
 }

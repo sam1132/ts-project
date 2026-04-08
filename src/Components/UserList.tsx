@@ -9,10 +9,10 @@ function UserList({users}:UserListProps) {
     {
         users.map((user)=>(
             <li key={user.id} className="mb-4 p-4 border rounded-lg shadow-sm ">
-                <p className="mb-5">@{user.username}</p>
-                <div className="flex justify-between ">
+                <p className="mb-2">@{user.username}</p>
+                <div className="flex justify-between gap-3 flex-col lg:flex-row ">
                     <p className="text-sm text-gray-500">{user.name}</p>
-                    <p className="text-sm text-gray-500">{user.email}</p>
+                    <p className="text-sm text-teal-500">{user.email}</p>
                 </div>
             </li>
         ))
