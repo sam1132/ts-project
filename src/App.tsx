@@ -3,7 +3,7 @@ import Dashboard from "./Pages/Dashboard.tsx";
 import Layout from "./Components/Layout.tsx";
 import Users from "./Pages/Users.tsx";
 import Posts from "./Pages/Posts.tsx";
-import { AppProvider } from "./context/AppProvider.tsx";
+import { AppProvider } from "./context/user/UserProvider.tsx";
 function App() {
   return (
     <>

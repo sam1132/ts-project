@@ -1,4 +1,4 @@
-import { useAppContext } from "../context/useAppContext";
+import { useAppContext } from "../context/user/useUserContext";
 
 function Dashboard() {
   const {posts,users}=useAppContext();

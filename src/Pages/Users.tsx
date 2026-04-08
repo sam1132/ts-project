@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SearchBar from "../Components/SearchBar";
 import UserList from "../Components/UserList";
-import { useAppContext } from "../context/useAppContext";
+import { useAppContext } from "../context/user/useUserContext";
 function UsersSkeleton() {
   return (
     <div>

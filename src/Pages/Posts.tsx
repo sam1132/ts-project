@@ -1,7 +1,7 @@
 import PostsList from "../Components/PostsList.tsx";
 import SearchBar from "../Components/SearchBar.tsx";
 import { useState } from "react";
-import { useAppContext } from "../context/useAppContext";
+import { useAppContext } from "../context/user/useUserContext.ts";
 
 function PostsSkeleton() {
   return (
