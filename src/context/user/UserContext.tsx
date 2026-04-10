@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import type { User } from "../../types/user.ts";
-import type { posts } from "../../types/posts.ts";
+import type  posts  from "../../types/posts.ts";
 
 
 interface AppContextType {

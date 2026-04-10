@@ -1,4 +1,4 @@
-export interface posts{
+export default interface posts{
     userId:number;
     id:number;
     title:string;

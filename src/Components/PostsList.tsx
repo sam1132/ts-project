@@ -1,4 +1,4 @@
-import type { Posts } from "../types/posts.ts"
+import type Posts from "../types/posts.ts"
 import { useTheme } from "../context/theme/useThemeContext";
 
 interface PostsListProps {
