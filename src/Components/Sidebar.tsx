@@ -1,62 +1,99 @@
 import { NavLink } from "react-router-dom";
 import { useTheme } from "../context/theme/useThemeContext";
-function Sidebar() {
+
+type SidebarProps = {
+  isCollapsed: boolean;
+  onToggleCollapse: () => void;
+  onNavigate: () => void;
+  onCloseMobile: () => void;
+};
+
+function Sidebar({
+  isCollapsed,
+  onToggleCollapse,
+  onNavigate,
+  onCloseMobile,
+}: SidebarProps) {
   const { theme, toggleTheme } = useTheme();
   const isLight = theme === "light";
+
+  const navBaseClass =
+    "block no-underline transition-all duration-200 mb-3 px-3 py-2 text-base font-semibold rounded-md";
+  const navStateClass = (isActive: boolean) =>
+    isActive
+      ? "text-teal-300 bg-teal-500/10"
+      : isLight
+      ? "text-gray-800 hover:bg-gray-200"
+      : "text-white hover:bg-zinc-800";
+
   return (
-    <div>
-      <h2 className="font-medium md:font-bold text-xl text-teal-300 md:text-2xl px-9 py-5">
-        TYPED API
-      </h2>
-      <nav className="p-5">
+    <div className="h-full flex flex-col">
+      <div className="flex items-center justify-between px-4 py-4 border-b border-inherit">
+        <h2
+          className={`font-medium md:font-bold text-teal-300 transition-all duration-200 ${
+            isCollapsed ? "text-base" : "text-xl md:text-2xl"
+          }`}
+        >
+          {isCollapsed ? "TA" : "TYPED API"}
+        </h2>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            className="md:hidden border px-2 py-1 rounded-md cursor-pointer"
+            onClick={onCloseMobile}
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            className="hidden md:block border px-2 py-1 rounded-md cursor-pointer"
+            onClick={onToggleCollapse}
+          >
+            {isCollapsed ? ">" : "<"}
+          </button>
+        </div>
+      </div>
+
+      <nav className="p-4 flex-1">
         <NavLink
           to="/"
-          className={({ isActive }) =>
-            `block no-underline transition-all duration-200 mb-5 px-5 text-lg font-semibold 
-          ${isActive
-              ? " text-teal-300 underline"
-              : isLight
-                ? "text-gray-800 hover:underline"
-                : " text-white hover:underline"}  `
-          }
+          onClick={onNavigate}
+          className={({ isActive }) => `${navBaseClass} ${navStateClass(isActive)}`}
         >
-          Dashboard
+          <span className={`transition-all duration-200 ${isCollapsed ? "text-sm" : "text-base"}`}>
+            {isCollapsed ? "D" : "Dashboard"}
+          </span>
         </NavLink>
         <NavLink
           to="/users"
-          className={({ isActive }) =>
-            `block font-semibold px-5 mb-5 text-lg transition-all duration-200 ${isActive
-              ? "text-teal-300 underline"
-              : isLight
-                ? "text-gray-800 hover:underline"
-                : "text-white hover:underline"
-            }`
-          }
+          onClick={onNavigate}
+          className={({ isActive }) => `${navBaseClass} ${navStateClass(isActive)}`}
         >
-          Users
+          <span className={`transition-all duration-200 ${isCollapsed ? "text-sm" : "text-base"}`}>
+            {isCollapsed ? "U" : "Users"}
+          </span>
         </NavLink>
         <NavLink
           to="/posts"
-          className={({ isActive }) =>
-            `block font-semibold px-5 mb-5 text-lg transition-all duration-200 ${isActive
-              ? "text-teal-300 underline"
-              : isLight
-                ? "text-gray-800 hover:underline"
-                : "text-white hover:underline"
-            }`
-          }
+          onClick={onNavigate}
+          className={({ isActive }) => `${navBaseClass} ${navStateClass(isActive)}`}
         >
-          Posts
+          <span className={`transition-all duration-200 ${isCollapsed ? "text-sm" : "text-base"}`}>
+            {isCollapsed ? "P" : "Posts"}
+          </span>
         </NavLink>
       </nav>
-      <div className="flex justify-center items-center mt-10 ">
+
+      <div className={`flex justify-center items-center p-4 ${isCollapsed ? "" : ""}`}>
         <button
-          className={`border p-2 rounded-lg cursor-pointer ${isLight ? "border-gray-400 text-gray-800" : ""
-            }`}
+          className={`border p-2 rounded-lg cursor-pointer text-sm ${
+            isLight ? "border-gray-400 text-gray-800" : "border-gray-500 text-gray-100"
+          }`}
           onClick={toggleTheme}
         >
-          Change theme
-        </button>      </div>
+          {isCollapsed ? "Theme" : "Change theme"}
+        </button>
+      </div>
     </div>
   );
 }
