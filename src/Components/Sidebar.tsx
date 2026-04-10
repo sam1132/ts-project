@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
-
+import { useTheme } from "../context/theme/useThemeContext";
 function Sidebar() {
+  const { theme, toggleTheme } = useTheme();
+  const isLight = theme === "light";
   return (
     <div>
       <h2 className="font-medium md:font-bold text-xl text-teal-300 md:text-2xl px-9 py-5">
@@ -10,7 +12,12 @@ function Sidebar() {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `block no-underline transition-all duration-200 mb-5 px-5 text-lg font-semibold ${isActive ? " text-teal-300 underline" : " text-white hover:underline"}  `
+            `block no-underline transition-all duration-200 mb-5 px-5 text-lg font-semibold 
+          ${isActive
+              ? " text-teal-300 underline"
+              : isLight
+                ? "text-gray-800 hover:underline"
+                : " text-white hover:underline"}  `
           }
         >
           Dashboard
@@ -18,9 +25,10 @@ function Sidebar() {
         <NavLink
           to="/users"
           className={({ isActive }) =>
-            `block font-semibold px-5 mb-5 text-lg transition-all duration-200 ${
-              isActive
-                ? "text-teal-300 underline"
+            `block font-semibold px-5 mb-5 text-lg transition-all duration-200 ${isActive
+              ? "text-teal-300 underline"
+              : isLight
+                ? "text-gray-800 hover:underline"
                 : "text-white hover:underline"
             }`
           }
@@ -30,9 +38,10 @@ function Sidebar() {
         <NavLink
           to="/posts"
           className={({ isActive }) =>
-            `block font-semibold px-5 mb-5 text-lg transition-all duration-200 ${
-              isActive
-                ? "text-teal-300 underline"
+            `block font-semibold px-5 mb-5 text-lg transition-all duration-200 ${isActive
+              ? "text-teal-300 underline"
+              : isLight
+                ? "text-gray-800 hover:underline"
                 : "text-white hover:underline"
             }`
           }
@@ -40,6 +49,14 @@ function Sidebar() {
           Posts
         </NavLink>
       </nav>
+      <div className="flex justify-center items-center mt-10 ">
+        <button
+          className={`border p-2 rounded-lg cursor-pointer ${isLight ? "border-gray-400 text-gray-800" : ""
+            }`}
+          onClick={toggleTheme}
+        >
+          Change theme
+        </button>      </div>
     </div>
   );
 }

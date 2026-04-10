@@ -4,9 +4,11 @@ import Layout from "./Components/Layout.tsx";
 import Users from "./Pages/Users.tsx";
 import Posts from "./Pages/Posts.tsx";
 import { AppProvider } from "./context/user/UserProvider.tsx";
+import { ThemeProvider } from "./context/theme/ThemeContext.tsx";
 function App() {
   return (
     <>
+    <ThemeProvider>
     <AppProvider> 
       <BrowserRouter>
         <Routes>
@@ -18,6 +20,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AppProvider>
+    </ThemeProvider>
     </>
   );
 }
