@@ -23,16 +23,15 @@ function Sidebar({
     isActive
       ? "text-teal-300 bg-teal-500/10"
       : isLight
-      ? "text-gray-800 hover:bg-gray-200"
-      : "text-white hover:bg-zinc-800";
+        ? "text-gray-800 hover:bg-gray-200"
+        : "text-white hover:bg-zinc-800";
 
   return (
     <div className="h-full flex flex-col">
       <div className="flex items-center justify-between px-4 py-4 border-b border-inherit">
         <h2
-          className={`font-medium md:font-bold text-teal-300 transition-all duration-200 ${
-            isCollapsed ? "text-base" : "text-xl md:text-2xl"
-          }`}
+          className={`font-medium md:font-bold text-teal-300 transition-all duration-200 ${isCollapsed ? "text-base" : "text-xl md:text-2xl"
+            }`}
         >
           {isCollapsed ? "TA" : "TYPED API"}
         </h2>
@@ -86,9 +85,8 @@ function Sidebar({
 
       <div className={`flex justify-center items-center p-4 ${isCollapsed ? "" : ""}`}>
         <button
-          className={`border p-2 rounded-lg cursor-pointer text-sm ${
-            isLight ? "border-gray-400 text-gray-800" : "border-gray-500 text-gray-100"
-          }`}
+          className={`border p-2 rounded-lg cursor-pointer text-sm ${isLight ? "border-gray-400 text-gray-800" : "border-gray-500 text-gray-100"
+            }`}
           onClick={toggleTheme}
         >
           {isCollapsed ? "Theme" : "Change theme"}
