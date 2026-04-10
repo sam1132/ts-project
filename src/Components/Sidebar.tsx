@@ -33,7 +33,7 @@ function Sidebar({
           className={`font-medium md:font-bold text-teal-300 transition-all duration-200 ${isCollapsed ? "text-base" : "text-xl md:text-2xl"
             }`}
         >
-          {isCollapsed ? "TA" : "TYPED API"}
+          {isCollapsed ? "" : "TYPED API"}
         </h2>
         <div className="flex items-center gap-2">
           <button
